@@ -4,6 +4,9 @@ class: center, middle
 
 # NodeSchool - *levelmeup*
 
+http://goo.gl/Mt4FO8
+
+
 [nodeschool.io/silesia](http://nodeschool.io/silesia), [@nodeschoolpl](https://twitter.com/nodeschoolpl)
 
 [@rspective](https://twitter.com/nodeschoolpl)
@@ -12,8 +15,7 @@ class: center, middle
 
 ???
 
-- Cześć!
-- Witamy w grupie, która zajmować się będzie nauką obsłgi bazy danych LevelDB.
+- Witam w grupie, która zajmować się będzie nauką obsłgi bazy danych LevelDB.
 - Korzystać będziemy z warsztatu *levelmeup*.
 
 ---
@@ -23,17 +25,16 @@ class: center, middle
 1. [https://nodejs.org](https://nodejs.org)
 2. `node -v`
 3. `npm -v`
-4. `npm install -g levelmeup`
+4. `(sudo) npm install -g levelmeup`
 5. `levelmeup`
 
 ???
 
-- Jak zainstalować warsztat?
-- Oto kilka kroków jakie należy wykonać, aby go zainstalować.
+- Oto kilka kroków jakie należy wykonać, aby zainstalować warsztat.
 
 ---
 
-### Workshopper
+# Workshopper
 
 ![Workshopper Screen](images/workshopper.png)
 
@@ -52,7 +53,7 @@ class: center, middle
 3. Zapisuje posortowane po kluczach dane na dysku.
 4. Kompresuje dane używając szybkiego algorytmu Snappy.
 5. Wspiera:
-   - dowolne tablice byte-ów jako klucze i wartości,
+   - tablice byte-ów jako klucze i wartości,
    - operacje GET, PUT, DELETE,
    - batchowe operacje PUT, DELETE,
    - dwukierunkowe iterowanie.
@@ -61,42 +62,39 @@ class: center, middle
    - tylko jeden proces może mieć do niej dostęp naraz,
    - nie ma wsparcia dla modelu client-server.
 
+https://github.com/google/leveldb
+
+http://leveldb.org
+
 ![leveldb](images/leveldb.png)
 
 ???
 
-- Zaczym zaczniemy - kilka zdań wprowadzenia na temat bazy LevelDB.
-- LevelDB to prosta, open-source-owa baza typu klucz wartość zbudowana przez Google.
-- Jest używana m.in. w Chromie (IndexedDB) oraz innych produktach (Bitcoin).
-- Zapisuje posortowane po kluczach dane na dysku. Można dostarczyć customową funkcję sortującą.
-- Kompresuje dane używając szybkiego algorytmu Snappy.
-
-- Wspiera:
--- dowolne tablice byte-ów jako klucze i wartości,
--- operacje GET, PUT, DELETE,
--- batchowe operacje PUT, DELETE,
--- dwukierunkowe iterowanie.
-
-- Minusy:
--- nie jest to baza SQL - nie wspiera relacji, nie wpiera zapytań SQL,
--- tylko jeden proces może mieć do niej dostęp naraz,
--- nie ma wsparcia dla modelu client-server - nie możemy jej wystawić jako serwer bez własnego wrappera.
+3) Można dostarczyć customową funkcję sortującą.
+6) Nie wspiera relacji. Nie wpiera zapytań SQL.
+6) Nie możemy jej wystawić jako serwer bez własnego wrappera.
 
 ---
 
 # LevelUP
 
 1. LevelUP to wrapper LevelDB dla Node.js.
-2. Wspiera m.in. takie encodowania jak Buffer i JSON.
-3. Iteratory oraz operacje batchowe mogą być używane jako stream-y.
+2. Callbacki + iteratory jako stream-y.
+3. Wspiera m.in. takie encodowania jak Buffer i JSON.
+4. Posiada dużo wtyczek. Wait for it...
+
+https://github.com/rvagg/node-levelup
 
 ```javascript
 var levelup = require('levelup');
-var db = levelup('./mydb'); // options, anync
+var db = levelup('./mydb');
+// anync; options: db, key/valueEncoding
 
+// sync (+ as option); options: key/valueEncoding
 db.put('name', 'LevelUP', function (err) {
   if (err) return console.error('Ooops!', err);
 
+  // type === 'NotFoundError'  ||  err.notFound
   db.get('name', function (err, value) {
     if (err) return console.error('Ooops!', err);
 
@@ -105,43 +103,35 @@ db.put('name', 'LevelUP', function (err) {
 });
 ```
 
-???
-
-- LevelUP to wrapper LevelDB dla Node.js.
-- Wspiera m.in. takie encodowania jak Buffer i JSON.
-- Iteratory oraz operacje batchowe mogą być używane jako streamy.
-
 ---
 
 # LevelDOWN and others...
 
 1. LevelDOWN to bindowanie pomiędzy LevelUP a LevelDB.
 2. Zaczynając od wersji 0.9, LevelUP nie dostarcza już LevelDOWN poprzez swoje zależności.
-3. Programista musi sam ją dostarczyć, lub jakąś alternatywę (level.js, MemDOWN).
-4. Level to odrębny wrapper (jak LevelUP), który dostarcza LevelDOWN.
+3. Programista musi sam je dostarczyć, lub jakąś alternatywę.
+4. Przykładowe alternatywy: level.js, MemDOWN, MongoDOWN, RedisDOWN, localstorage-down.
+4. Level = LevelUp + LevelDOWN
+
+https://github.com/rvagg/node-leveldown
+
+https://github.com/level/level
 
 ???
 
-- LevelDOWN to bindowanie pomiędzy LevelUP a LevelDB. LevelUP używa LevelDOWN aby wykonywać operacje na LevelDB.
-- Zaczynając od wersji 0.9, LevelUP nie dostarcza już LevelDOWN poprzez swoje zależności.
-
-- Programista musi sam ją dostarczyć, lub jakąś alternatywę.
--- Level.js to implementacja LevelDB w przeglądarce.
--- MemDOWN to pamięciowa implementacja LevelDB.
-
-- Level to odrębny wrapper (jak LevelUP), który dostarcza LevelDOWN w swoich zależnościach.
--- Powstał głównie aby ułatwić używanie LevelDB.
--- Tworzą go prawie ci sami ludzie. Level ma o jednego kontrybutora mniej.
+1) LevelUP używa LevelDOWN aby wykonywać operacje na LevelDB.
+4) Level powstał głównie aby ułatwić używanie LevelDB.
+4) Tworzą go prawie ci sami ludzie. Level ma o jednego kontrybutora mniej.
 
 ---
 
-# Code snippets
+# Code snippets: batch ops
 
 ```javascript
 var ops = [
     { type: 'del', key: 'old' },
-    { type: 'put', key: 'new', value: 'Clown' }
-]
+    { type: 'put', key: 'new', value: 'Clown' } // options: key/valueEncoding
+];
 
 db.batch(ops, function (err) {
   if (err) return console.log('Ooops!', err);
@@ -152,15 +142,23 @@ db.batch(ops, function (err) {
 ```javascript
 db.batch()
   .del('old')
-  .put('new', 'Clown')
+  .put('new', 'Clown') // options: key/valueEncoding
   .write(function(err) {
      if (err) return console.log('Ooops!', err);
      console.log('Success!');
-   })
+   });
 ```
 
+???
+
+- clear() - czyści wcześnejsze komendy
+
+---
+
+# Code snippets: streams
+
 ```javascript
-db.createReadStream() // options
+db.createReadStream() // createKeyStream, createValueStream; options
   .on('data', function(data) {
     console.log(data.key, '=', data.value);
   })
@@ -172,10 +170,29 @@ db.createReadStream() // options
   })
   .on('end', function() {
     console.log('Stream closed');
-  })
+  });
+
+// options: gt (start), lt (end), reverse, limit
+// options: keys, values, key/valueEncoding
 ```
+
+???
+
+- pause(), resume(), destroy(), pipe()
+- nie ma createWriteStream() - oddzielny moduł
+
+---
+
+# Links
+
+1. https://github.com/rvagg/node-levelup - dokumentacja
+2. https://github.com/rvagg/node-levelup/wiki/Modules - o_O
+
+   ... databases, ORMs, Storage back-ends, Plugins, Replication, Modules, write-streams, Tools (GUI)
 
 ---
 class: center, middle
 
-# Let's get the hands *dirty* !
+# Let's get the fingers *busy* !
+
+hint: debug = console.error() + 'levelmeup run file.js'

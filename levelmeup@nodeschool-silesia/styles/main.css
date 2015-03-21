@@ -66,6 +66,8 @@ iframe {
 
 
 img[alt*="leveldb"] {
-    width: 15%;
-    margin-left: 42%;
+  position: absolute;
+  left: 385px;
+  top: 15px;
+  width: 15%;
 }
