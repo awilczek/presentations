@@ -75,6 +75,8 @@ http://leveldb.org
 
 6) Nie wspiera relacji. Nie wpiera zapytań SQL.
 
+6) Dostęp do bazy może mieć tylko jedna instancja w klastrze Node-a.
+
 6) Nie możemy jej wystawić jako serwer bez własnego wrappera.
 
 ---
@@ -97,7 +99,7 @@ var db = levelup('./mydb');
 db.put('name', 'LevelUP', function (err) {
   if (err) return console.error('Ooops!', err);
 
-  // type === 'NotFoundError'  ||  err.notFound
+  // err.type === 'NotFoundError'  ||  err.notFound
   db.get('name', function (err, value) {
     if (err) return console.error('Ooops!', err);
 
@@ -105,6 +107,11 @@ db.put('name', 'LevelUP', function (err) {
   });
 });
 ```
+
+???
+
+- options: createIfMissing (true), errorIfExists (false), compression (true), cacheSize (8 * 1024 * 1024), keyEncoding, valueEncoding ('utf8'), db (LevelDOWN)
+- encodings: hex, utf8, ascii, binary, base64, ucs2, utf16le, json
 
 ---
 
@@ -185,6 +192,7 @@ db.createReadStream() // createKeyStream, createValueStream; options
 
 - pause(), resume(), destroy(), pipe()
 - nie ma createWriteStream() - oddzielny moduł
+- options: reverse (false), limit (-1, all), keys (true), values (true), ... fillCache (false)
 
 ---
 
@@ -194,6 +202,14 @@ db.createReadStream() // createKeyStream, createValueStream; options
 2. https://github.com/rvagg/node-levelup/wiki/Modules - o_O
 
    ... databases, ORMs, Storage back-ends, Plugins, Replication, Modules, write-streams, Tools (GUI)
+
+???
+
+- Czego nie było:
+- Events
+- db.db.approximateSize
+- db.db.getProperty(): 'leveldb.num-files-at-levelN', 'leveldb.stats', 'leveldb.sstables'
+- leveldown.destroy(), leveldown.repair()
 
 ---
 class: center, middle
