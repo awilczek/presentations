@@ -110,7 +110,7 @@ db.put('name', 'LevelUP', function (err) {
 
 ???
 
-- options: createIfMissing (true), errorIfExists (false), compression (true), cacheSize (8 * 1024 * 1024), keyEncoding, valueEncoding ('utf8'), db (LevelDOWN)
+- options: createIfMissing (true), errorIfExists (false), compression (true), cacheSize (8 \* 1024 \* 1024), keyEncoding, valueEncoding ('utf8'), db (LevelDOWN)
 - encodings: hex, utf8, ascii, binary, base64, ucs2, utf16le, json
 
 ---
