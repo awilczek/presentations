@@ -7,6 +7,7 @@ class: center, middle
 http://goo.gl/Mt4FO8
 
 
+
 [nodeschool.io/silesia](http://nodeschool.io/silesia), [@nodeschoolpl](https://twitter.com/nodeschoolpl)
 
 [@rspective](https://twitter.com/nodeschoolpl)
@@ -71,7 +72,9 @@ http://leveldb.org
 ???
 
 3) Można dostarczyć customową funkcję sortującą.
+
 6) Nie wspiera relacji. Nie wpiera zapytań SQL.
+
 6) Nie możemy jej wystawić jako serwer bez własnego wrappera.
 
 ---
@@ -120,7 +123,9 @@ https://github.com/level/level
 ???
 
 1) LevelUP używa LevelDOWN aby wykonywać operacje na LevelDB.
+
 4) Level powstał głównie aby ułatwić używanie LevelDB.
+
 4) Tworzą go prawie ci sami ludzie. Level ma o jednego kontrybutora mniej.
 
 ---
