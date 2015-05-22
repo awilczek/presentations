@@ -64,7 +64,8 @@ iframe {
   height: 400px;
 }
 
-img[alt*="p-logo"] {
+img[alt*="p-logo"],
+img[alt*="polyfill"] {
   width: 10em;
   margin-left: auto;
   margin-right: auto;

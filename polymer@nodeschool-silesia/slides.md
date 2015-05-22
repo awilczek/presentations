@@ -41,15 +41,20 @@ https://goo.gl/4vOESc
 # Polyfills
 
 - "A polyfill, or polyfiller, is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively. Flattening the API landscape if you will."
+
+![polyfill](images/logo.svg)
+
+- http://webcomponents.org/
 - https://github.com/webcomponents/webcomponentsjs
 
 ---
 
 # Polymer
 
+- "Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond."
+
 ![p-logo](images/p-logo.svg)
 
-- "Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond."
 - https://www.polymer-project.org/0.5/
 - core and paper elements
  - https://www.polymer-project.org/0.5/docs/elements/
@@ -58,6 +63,8 @@ https://goo.gl/4vOESc
 - alternatywy
  - http://www.x-tags.org/
  - https://bosonic.github.io/
+- designer
+ - https://polymer-designer.appspot.com/
 
 ---
 
@@ -66,8 +73,6 @@ https://goo.gl/4vOESc
 - http://component.kitchen/
 - https://customelements.io/
 - https://googlewebcomponents.github.io/
-
----
 
 # Other interesing...
 
@@ -78,4 +83,5 @@ https://goo.gl/4vOESc
 
 ---
 
-<great-thanks/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+< great-thanks />
