@@ -17,7 +17,7 @@ https://goo.gl/4vOESc
 
 ---
 
-# Web Components - the Web SDK
+# Web Components
 
 - Custom elements
 ```
@@ -32,9 +32,15 @@ https://goo.gl/4vOESc
 - Templates
 ```
 < template >
-      <img src="large.git"> // this will not fire any request (yet)
+      <img src="large.gif"> // this will not fire any request (yet)
 < /template >
 ```
+
+???
+
+- zestaw standardów tworzonych przez Google jako specyfikacja W3C
+- pozwalają na tworzenie reużywalnych komponentów, widgetów w sieci Web i Web aplikacjach
+- model komponentowy pozwala na enkapsulację i interoperacyjność poszczególnych elementów HTML
 
 ---
 
