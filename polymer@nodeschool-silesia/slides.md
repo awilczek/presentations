@@ -5,7 +5,7 @@ class: center, middle
 # NodeSchool
 # *Web Components and Polymer*
 
-http://goo.gl/Mt4FO8
+https://goo.gl/4vOESc
 
 
 
